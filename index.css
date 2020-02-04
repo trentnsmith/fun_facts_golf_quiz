@@ -1,26 +1,35 @@
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
   font-family: 'Permanent Marker';
   margin: 0;
   background-size: cover;
-  /*background-image: url("https://i.pinimg.com/originals/d6/f4/0a/d6f40abce6547e18518ae4f751b37e21.jpg");
-  background-color: transparent;*/
+  background-image: url(images/background.jpg);
+  background-position: fixed;
+  background-color: transparent;
 }
 
 header {
   margin-top: 25px;
   height:80px;
   margin-bottom: 60px;
-  font-size: 25px;
-  /*color: whitesmoke;*/
+  font-size: 20px;
+  color: whitesmoke;
+  text-align: center;
 }
 
-.flex-container-header {
-    display: flex;
-    justify-content: center;
+.quiz-body {
+  display: flex;
+  justify-content: left;
+  width: 50%;
+}
+
+.score {
+  text-align: center;
 }
 
 main {
@@ -32,15 +41,20 @@ fieldset {
   width: 80%;
   padding: 40px;
   margin: 0 auto;
-  /*background:rgba(208, 236, 175, 0.945);*/
+  background:rgba(208, 236, 175, 0.945);
   border-radius: 10px;
+}
+
+.images {
+  width: 90%;
+  max-width: 250px;
 }
 
 button {
   margin-top:10px;
   font-family: 'Permanent Marker';
   color: whitesmoke;
-  font-size: 20px;
+  font-size: 18px;
   background: rgb(2, 73, 34);
   border: 0;
   cursor: pointer;

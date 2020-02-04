@@ -60,13 +60,14 @@ const STORE = {
   questionNumber: 0
 };
 
+//Starts the quiz when someone clicks "Let's Go"
 function startQuiz() {
   $('#start').click(function() {
-    console.log('STAERING QUIXK');
     generateQuestion()
   });
 }
 
+//Generates the next question when someone clicks on Next Question
 function nextQuestion() {
   $('#nextQuestion').click(function() {
     STORE.questionNumber++;  
@@ -78,6 +79,7 @@ function nextQuestion() {
   })
 }
 
+//Renders the final page with the total score
 function finalPage () {
   $('main').html( `
   <main role="main" class="quiz-body">
@@ -94,21 +96,24 @@ function finalPage () {
   restartQuiz();
 }
 
+//submits the option one chooses; shows if it correct or incorrect
 function submitAnswer() {
   $('#submitButton').click(function() {
     event.preventDefault();
     let selection = $('input:checked');
     let userChoice = selection.val();
     let correct = STORE.questions[STORE.questionNumber].correctAnswer;
-
-    console.log(selection);
-    console.log(correct);
+    if (!userChoice) {
+      alert("Please choose an option");
+      return
+    }
 
     if (userChoice === correct) {
       correctAnswer();
     } else {
       wrongAnswer();
     }
+    
   });
 }
 
@@ -116,7 +121,7 @@ function submitAnswer() {
 // //displays a question
 function generateQuestion() {
   let question = STORE.questions[STORE.questionNumber];
-  // updateScore();
+
 
   let answers = '';
 
@@ -141,7 +146,7 @@ function generateQuestion() {
   $('main').html(questionHtml);
 
   const scoreAndQuestionHtml = $(`
-      <header class="flex-container-header">
+      <header class="header">
           <div class="quiz-title">
               <h1>Fun Facts Golf Quiz</h1>
               <div class="score">Question: ${STORE.questionNumber + 1}/5  Score: <span id="userScore">${STORE.score}</span></div>
@@ -149,12 +154,10 @@ function generateQuestion() {
       </header>`);
   $('header').html(scoreAndQuestionHtml);
 
-
-  // questionOptions();
-  console.log('`generateQuestion ran`')
   submitAnswer();
 }
 
+//renders the "correct answer" page
 function correctAnswer () {
   console.log('CORRECT!!!!');
   $('.question-title').html(
@@ -174,6 +177,7 @@ function correctAnswer () {
 
 }
 
+//renders the "incorrect answer" page
 function wrongAnswer () {
   console.log('WRONG ANSWER!');
   $('.question-title').html(
@@ -188,6 +192,7 @@ function wrongAnswer () {
   nextQuestion();
 }
 
+//restarts the page when one clicks on restart
 function restartQuiz () {
   $('#restart').click(function() {
       $('main').html(` 
